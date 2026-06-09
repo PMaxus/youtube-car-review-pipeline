@@ -1,0 +1,691 @@
+{
+    "name":  "CarReview_get_transcripts",
+    "nodes":  [
+                  {
+                      "parameters":  {
+                                         "workflowInputs":  {
+                                                                "values":  [
+                                                                               {
+                                                                                   "name":  "video_url"
+                                                                               },
+                                                                               {
+                                                                                   "name":  "job_id"
+                                                                               }
+                                                                           ]
+                                                            }
+                                     },
+                      "type":  "n8n-nodes-base.executeWorkflowTrigger",
+                      "typeVersion":  1.1,
+                      "position":  [
+                                       -1120,
+                                       -16
+                                   ],
+                      "id":  "ed3ea491-f8e6-4851-b289-35c6556175fc",
+                      "name":  "When Executed by Another Workflow"
+                  },
+                  {
+                      "parameters":  {
+                                         "amount":  2
+                                     },
+                      "type":  "n8n-nodes-base.wait",
+                      "typeVersion":  1.1,
+                      "position":  [
+                                       1328,
+                                       0
+                                   ],
+                      "id":  "93cff3fc-54ee-4719-998c-79666e239689",
+                      "name":  "Wait2"
+                  },
+                  {
+                      "parameters":  {
+                                         "options":  {
+                                                         "reset":  false
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.splitInBatches",
+                      "typeVersion":  3,
+                      "position":  [
+                                       -464,
+                                       -16
+                                   ],
+                      "id":  "c1647a21-8a6d-45e9-9975-7fd26ab45a2b",
+                      "name":  "Loop Over Items1"
+                  },
+                  {
+                      "parameters":  {
+                                         "amount":  2
+                                     },
+                      "type":  "n8n-nodes-base.wait",
+                      "typeVersion":  1.1,
+                      "position":  [
+                                       960,
+                                       416
+                                   ],
+                      "id":  "cb58eec1-7cff-441b-ac81-7e0d674a9c83",
+                      "name":  "Wait3"
+                  },
+                  {
+                      "parameters":  {
+                                         "conditions":  {
+                                                            "options":  {
+                                                                            "caseSensitive":  true,
+                                                                            "leftValue":  "",
+                                                                            "typeValidation":  "strict",
+                                                                            "version":  3
+                                                                        },
+                                                            "conditions":  [
+                                                                               {
+                                                                                   "id":  "8a8bcf18-6623-4f2f-834c-b4eff9c63323",
+                                                                                   "leftValue":  "={{ $json.transcript_only_text }}",
+                                                                                   "rightValue":  "",
+                                                                                   "operator":  {
+                                                                                                    "type":  "string",
+                                                                                                    "operation":  "empty",
+                                                                                                    "singleValue":  true
+                                                                                                }
+                                                                               },
+                                                                               {
+                                                                                   "id":  "f8167eaa-38cc-4e0d-afff-f4461d2b17da",
+                                                                                   "leftValue":  "={{ $(\u0027set attempt+id+url\u0027).item.json.attempt }}",
+                                                                                   "rightValue":  3,
+                                                                                   "operator":  {
+                                                                                                    "type":  "number",
+                                                                                                    "operation":  "lte"
+                                                                                                }
+                                                                               }
+                                                                           ],
+                                                            "combinator":  "and"
+                                                        },
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.if",
+                      "typeVersion":  2.3,
+                      "position":  [
+                                       208,
+                                       240
+                                   ],
+                      "id":  "53deaf08-4ff3-4a40-90bf-bef773bff541",
+                      "name":  "if empty1"
+                  },
+                  {
+                      "parameters":  {
+                                         "assignments":  {
+                                                             "assignments":  [
+                                                                                 {
+                                                                                     "id":  "f4876c6b-7eb3-49cd-9ec7-b82e83fc7bc8",
+                                                                                     "name":  "attempt",
+                                                                                     "value":  "={{ ( $(\u0027set attempt+id+url\u0027).item.json.attempt|| 0) + 1 }}",
+                                                                                     "type":  "number"
+                                                                                 },
+                                                                                 {
+                                                                                     "id":  "65cd531c-8729-4ff6-bf66-0354c4d87e74",
+                                                                                     "name":  "url",
+                                                                                     "value":  "={{ $json.url }}",
+                                                                                     "type":  "string"
+                                                                                 },
+                                                                                 {
+                                                                                     "id":  "f90c45f2-7a0f-4114-b748-71ffe07d286e",
+                                                                                     "name":  "job_id_jobs",
+                                                                                     "value":  "={{ $(\u0027set attempt+id+url\u0027).item.json.job_id_jobs }}",
+                                                                                     "type":  "string"
+                                                                                 }
+                                                                             ]
+                                                         },
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.set",
+                      "typeVersion":  3.4,
+                      "position":  [
+                                       1360,
+                                       192
+                                   ],
+                      "id":  "c6a47867-f3c1-4e1b-861a-5110c40bc314",
+                      "name":  "attempt1"
+                  },
+                  {
+                      "parameters":  {
+                                         "assignments":  {
+                                                             "assignments":  [
+                                                                                 {
+                                                                                     "id":  "729e2320-908f-4fef-8517-d667a12bc318",
+                                                                                     "name":  "job_id_jobs",
+                                                                                     "value":  "={{ $json.job_id }}",
+                                                                                     "type":  "string"
+                                                                                 },
+                                                                                 {
+                                                                                     "id":  "5168243d-9ccc-48dd-909a-7d559c890ccc",
+                                                                                     "name":  "url",
+                                                                                     "value":  "={{ $json.video_url }}",
+                                                                                     "type":  "string"
+                                                                                 },
+                                                                                 {
+                                                                                     "id":  "22685956-93f4-43bf-bee0-1dd2a72eab05",
+                                                                                     "name":  "attempt",
+                                                                                     "value":  1,
+                                                                                     "type":  "number"
+                                                                                 }
+                                                                             ]
+                                                         },
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.set",
+                      "typeVersion":  3.4,
+                      "position":  [
+                                       -848,
+                                       -16
+                                   ],
+                      "id":  "b4a33060-970b-4c3d-8eb7-1b5a09da7bba",
+                      "name":  "Set"
+                  },
+                  {
+                      "parameters":  {
+                                         "resource":  "youtube",
+                                         "operation":  "getYouTubeVideoTranscript",
+                                         "url":  "={{ $json.url }}",
+                                         "requestOptions":  {
+
+                                                            }
+                                     },
+                      "type":  "n8n-nodes-scrape-creators.scrapeCreators",
+                      "typeVersion":  1,
+                      "position":  [
+                                       -16,
+                                       240
+                                   ],
+                      "id":  "a707126b-f31e-4d84-8e59-bcd978c6bb46",
+                      "name":  "Get a you tube video transcript2",
+                      "retryOnFail":  true,
+                      "waitBetweenTries":  3000,
+                      "credentials":  {
+                                          "scrapeCreatorsApi":  {
+                                                                    "id":  "",
+                                                                    "name":  "ScrapeCreators account"
+                                                                }
+                                      }
+                  },
+                  {
+                      "parameters":  {
+                                         "operation":  "update",
+                                         "schema":  {
+                                                        "__rl":  true,
+                                                        "value":  "carreview",
+                                                        "mode":  "list",
+                                                        "cachedResultName":  "carreview"
+                                                    },
+                                         "table":  {
+                                                       "__rl":  true,
+                                                       "value":  "job_videos",
+                                                       "mode":  "list",
+                                                       "cachedResultName":  "job_videos"
+                                                   },
+                                         "columns":  {
+                                                         "mappingMode":  "defineBelow",
+                                                         "value":  {
+                                                                       "updated_at":  "={{ $now }}",
+                                                                       "transcript_text":  "={{ $json?.transcript_only_text || \"empty\" }}",
+                                                                       "youtube_video_url":  "={{ $json.url }}",
+                                                                       "job_id_jobs":  "={{ $(\u0027set attempt+id+url\u0027).item.json.job_id_jobs }}"
+                                                                   },
+                                                         "matchingColumns":  [
+                                                                                 "job_id_jobs",
+                                                                                 "youtube_video_url"
+                                                                             ],
+                                                         "schema":  [
+                                                                        {
+                                                                            "id":  "job_id_jobs",
+                                                                            "displayName":  "job_id_jobs",
+                                                                            "required":  true,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true,
+                                                                            "removed":  false
+                                                                        },
+                                                                        {
+                                                                            "id":  "youtube_video_url",
+                                                                            "displayName":  "youtube_video_url",
+                                                                            "required":  true,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true,
+                                                                            "removed":  false
+                                                                        },
+                                                                        {
+                                                                            "id":  "youtube_channel_url",
+                                                                            "displayName":  "youtube_channel_url",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true,
+                                                                            "removed":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "youtube_channel_title",
+                                                                            "displayName":  "youtube_channel_title",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true,
+                                                                            "removed":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "youtube_video_title",
+                                                                            "displayName":  "youtube_video_title",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true,
+                                                                            "removed":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "transcript_text",
+                                                                            "displayName":  "transcript_text",
+                                                                            "required":  true,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "transcript_summary",
+                                                                            "displayName":  "transcript_summary",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true,
+                                                                            "removed":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "published_at",
+                                                                            "displayName":  "published_at",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "dateTime",
+                                                                            "canBeUsedToMatch":  true,
+                                                                            "removed":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "created_at",
+                                                                            "displayName":  "created_at",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "dateTime",
+                                                                            "canBeUsedToMatch":  true,
+                                                                            "removed":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "updated_at",
+                                                                            "displayName":  "updated_at",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "dateTime",
+                                                                            "canBeUsedToMatch":  true
+                                                                        }
+                                                                    ],
+                                                         "attemptToConvertTypes":  false,
+                                                         "convertFieldsToString":  false
+                                                     },
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.postgres",
+                      "typeVersion":  2.6,
+                      "position":  [
+                                       592,
+                                       336
+                                   ],
+                      "id":  "f3bde71b-9f84-4c38-bf86-263cf2ec1345",
+                      "name":  "update jobs_video",
+                      "credentials":  {
+                                          "postgres":  {
+                                                           "id":  "",
+                                                           "name":  "Postgres account"
+                                                       }
+                                      }
+                  },
+                  {
+                      "parameters":  {
+                                         "assignments":  {
+                                                             "assignments":  [
+                                                                                 {
+                                                                                     "id":  "7bd75472-679a-4302-8a82-17371c4dc8ca",
+                                                                                     "name":  "attempt",
+                                                                                     "value":  "={{ $json.attempt }}",
+                                                                                     "type":  "number"
+                                                                                 },
+                                                                                 {
+                                                                                     "id":  "5c0e98b1-e616-483e-9dff-5154c8c91f8d",
+                                                                                     "name":  "url",
+                                                                                     "value":  "={{ $json.url }}",
+                                                                                     "type":  "string"
+                                                                                 },
+                                                                                 {
+                                                                                     "id":  "b43cdd4a-28b7-4f48-aefd-8b7e473aec42",
+                                                                                     "name":  "job_id_jobs",
+                                                                                     "value":  "={{ $json.job_id_jobs }}",
+                                                                                     "type":  "string"
+                                                                                 }
+                                                                             ]
+                                                         },
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.set",
+                      "typeVersion":  3.4,
+                      "position":  [
+                                       -240,
+                                       240
+                                   ],
+                      "id":  "247c1b59-dd62-42f6-8883-61b48f93b122",
+                      "name":  "set attempt+id+url"
+                  },
+                  {
+                      "parameters":  {
+                                         "conditions":  {
+                                                            "options":  {
+                                                                            "caseSensitive":  true,
+                                                                            "leftValue":  "",
+                                                                            "typeValidation":  "strict",
+                                                                            "version":  3
+                                                                        },
+                                                            "conditions":  [
+                                                                               {
+                                                                                   "id":  "e8e02445-4817-42ee-9dff-77295dae54a3",
+                                                                                   "leftValue":  "={{ $json.transcript_text }}",
+                                                                                   "rightValue":  "empty",
+                                                                                   "operator":  {
+                                                                                                    "type":  "string",
+                                                                                                    "operation":  "equals"
+                                                                                                }
+                                                                               },
+                                                                               {
+                                                                                   "id":  "ceab519d-9433-4647-a33b-99c27c1dc678",
+                                                                                   "leftValue":  "={{ $json.transcript_text }}",
+                                                                                   "rightValue":  "",
+                                                                                   "operator":  {
+                                                                                                    "type":  "string",
+                                                                                                    "operation":  "empty",
+                                                                                                    "singleValue":  true
+                                                                                                }
+                                                                               }
+                                                                           ],
+                                                            "combinator":  "or"
+                                                        },
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.if",
+                      "typeVersion":  2.3,
+                      "position":  [
+                                       -128,
+                                       -64
+                                   ],
+                      "id":  "74760a08-3de0-4d7c-9977-0de838fecd43",
+                      "name":  "I any empty"
+                  },
+                  {
+                      "parameters":  {
+                                         "assignments":  {
+                                                             "assignments":  [
+                                                                                 {
+                                                                                     "id":  "6ed2fb0c-438a-4b52-b992-9d1c862c47f6",
+                                                                                     "name":  "Success",
+                                                                                     "value":  false,
+                                                                                     "type":  "boolean"
+                                                                                 },
+                                                                                 {
+                                                                                     "id":  "0cc3ca63-af95-420b-adf5-7fc42ff9a1ec",
+                                                                                     "name":  "Error",
+                                                                                     "value":  "Empty items exists",
+                                                                                     "type":  "string"
+                                                                                 }
+                                                                             ]
+                                                         },
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.set",
+                      "typeVersion":  3.4,
+                      "position":  [
+                                       160,
+                                       -160
+                                   ],
+                      "id":  "3f1ba1a3-c84f-42df-98b2-cbd42fc8f5cf",
+                      "name":  "if empty",
+                      "executeOnce":  true
+                  },
+                  {
+                      "parameters":  {
+                                         "assignments":  {
+                                                             "assignments":  [
+                                                                                 {
+                                                                                     "id":  "6ed2fb0c-438a-4b52-b992-9d1c862c47f6",
+                                                                                     "name":  "Success",
+                                                                                     "value":  true,
+                                                                                     "type":  "boolean"
+                                                                                 }
+                                                                             ]
+                                                         },
+                                         "includeOtherFields":  true,
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.set",
+                      "typeVersion":  3.4,
+                      "position":  [
+                                       160,
+                                       16
+                                   ],
+                      "id":  "a3b39884-26fa-4b6f-84a1-c77147b660a6",
+                      "name":  "if empty2",
+                      "executeOnce":  true
+                  },
+                  {
+                      "parameters":  {
+                                         "assignments":  {
+                                                             "assignments":  [
+                                                                                 {
+                                                                                     "id":  "f3c5c854-493c-493b-88b3-363f069dfa5e",
+                                                                                     "name":  "job_id_jobs",
+                                                                                     "value":  1,
+                                                                                     "type":  "number"
+                                                                                 }
+                                                                             ]
+                                                         },
+                                         "includeOtherFields":  true,
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.set",
+                      "typeVersion":  3.4,
+                      "position":  [
+                                       1168,
+                                       416
+                                   ],
+                      "id":  "27a0dd5a-ba4d-40e4-bff2-655f4b52141a",
+                      "name":  "attemp new"
+                  }
+              ],
+    "connections":  {
+                        "When Executed by Another Workflow":  {
+                                                                  "main":  [
+                                                                               [
+                                                                                   {
+                                                                                       "node":  "Set",
+                                                                                       "type":  "main",
+                                                                                       "index":  0
+                                                                                   }
+                                                                               ]
+                                                                           ]
+                                                              },
+                        "Wait2":  {
+                                      "main":  [
+                                                   [
+                                                       {
+                                                           "node":  "set attempt+id+url",
+                                                           "type":  "main",
+                                                           "index":  0
+                                                       }
+                                                   ]
+                                               ]
+                                  },
+                        "Loop Over Items1":  {
+                                                 "main":  [
+                                                              [
+                                                                  {
+                                                                      "node":  "I any empty",
+                                                                      "type":  "main",
+                                                                      "index":  0
+                                                                  }
+                                                              ],
+                                                              [
+                                                                  {
+                                                                      "node":  "set attempt+id+url",
+                                                                      "type":  "main",
+                                                                      "index":  0
+                                                                  }
+                                                              ]
+                                                          ]
+                                             },
+                        "Wait3":  {
+                                      "main":  [
+                                                   [
+                                                       {
+                                                           "node":  "attemp new",
+                                                           "type":  "main",
+                                                           "index":  0
+                                                       }
+                                                   ]
+                                               ]
+                                  },
+                        "if empty1":  {
+                                          "main":  [
+                                                       [
+                                                           {
+                                                               "node":  "attempt1",
+                                                               "type":  "main",
+                                                               "index":  0
+                                                           }
+                                                       ],
+                                                       [
+                                                           {
+                                                               "node":  "update jobs_video",
+                                                               "type":  "main",
+                                                               "index":  0
+                                                           }
+                                                       ]
+                                                   ]
+                                      },
+                        "attempt1":  {
+                                         "main":  [
+                                                      [
+                                                          {
+                                                              "node":  "Wait2",
+                                                              "type":  "main",
+                                                              "index":  0
+                                                          }
+                                                      ]
+                                                  ]
+                                     },
+                        "Set":  {
+                                    "main":  [
+                                                 [
+                                                     {
+                                                         "node":  "Loop Over Items1",
+                                                         "type":  "main",
+                                                         "index":  0
+                                                     }
+                                                 ]
+                                             ]
+                                },
+                        "Get a you tube video transcript2":  {
+                                                                 "main":  [
+                                                                              [
+                                                                                  {
+                                                                                      "node":  "if empty1",
+                                                                                      "type":  "main",
+                                                                                      "index":  0
+                                                                                  }
+                                                                              ]
+                                                                          ]
+                                                             },
+                        "update jobs_video":  {
+                                                  "main":  [
+                                                               [
+                                                                   {
+                                                                       "node":  "Wait3",
+                                                                       "type":  "main",
+                                                                       "index":  0
+                                                                   }
+                                                               ]
+                                                           ]
+                                              },
+                        "set attempt+id+url":  {
+                                                   "main":  [
+                                                                [
+                                                                    {
+                                                                        "node":  "Get a you tube video transcript2",
+                                                                        "type":  "main",
+                                                                        "index":  0
+                                                                    }
+                                                                ]
+                                                            ]
+                                               },
+                        "I any empty":  {
+                                            "main":  [
+                                                         [
+                                                             {
+                                                                 "node":  "if empty",
+                                                                 "type":  "main",
+                                                                 "index":  0
+                                                             }
+                                                         ],
+                                                         [
+                                                             {
+                                                                 "node":  "if empty2",
+                                                                 "type":  "main",
+                                                                 "index":  0
+                                                             }
+                                                         ]
+                                                     ]
+                                        },
+                        "attemp new":  {
+                                           "main":  [
+                                                        [
+                                                            {
+                                                                "node":  "Loop Over Items1",
+                                                                "type":  "main",
+                                                                "index":  0
+                                                            }
+                                                        ]
+                                                    ]
+                                       }
+                    },
+    "settings":  {
+                     "executionOrder":  "v1",
+                     "availableInMCP":  false
+                 },
+    "meta":  {
+                 "templateCredsSetupCompleted":  true
+             }
+}

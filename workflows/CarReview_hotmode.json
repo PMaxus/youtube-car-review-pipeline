@@ -1,0 +1,306 @@
+{
+    "name":  "CarReview_hotmode",
+    "nodes":  [
+                  {
+                      "parameters":  {
+                                         "workflowInputs":  {
+                                                                "values":  [
+                                                                               {
+                                                                                   "name":  "result_cummary"
+                                                                               }
+                                                                           ]
+                                                            }
+                                     },
+                      "type":  "n8n-nodes-base.executeWorkflowTrigger",
+                      "typeVersion":  1.1,
+                      "position":  [
+                                       -288,
+                                       0
+                                   ],
+                      "id":  "4c374d1c-8131-40d8-ac69-70e310ab66ce",
+                      "name":  "When Executed by Another Workflow"
+                  },
+                  {
+                      "parameters":  {
+                                         "model":  "anthropic/claude-sonnet-4.5",
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+                      "typeVersion":  1,
+                      "position":  [
+                                       112,
+                                       208
+                                   ],
+                      "id":  "a899f119-88d0-42f9-a25a-5dd622aab7a9",
+                      "name":  "OpenRouter Chat Model",
+                      "credentials":  {
+                                          "openRouterApi":  {
+                                                                "id":  "",
+                                                                "name":  "OpenRouter account"
+                                                            }
+                                      }
+                  },
+                  {
+                      "parameters":  {
+                                         "method":  "POST",
+                                         "url":  "https://api.inworld.ai/tts/v1/voice",
+                                         "authentication":  "genericCredentialType",
+                                         "genericAuthType":  "httpHeaderAuth",
+                                         "sendHeaders":  true,
+                                         "headerParameters":  {
+                                                                  "parameters":  [
+                                                                                     {
+                                                                                         "name":  "Content-Type",
+                                                                                         "value":  "application/json"
+                                                                                     }
+                                                                                 ]
+                                                              },
+                                         "sendBody":  true,
+                                         "bodyParameters":  {
+                                                                "parameters":  [
+                                                                                   {
+                                                                                       "name":  "text",
+                                                                                       "value":  "={{ $json.output.voiceover_text }}"
+                                                                                   },
+                                                                                   {
+                                                                                       "name":  "voiceId",
+                                                                                       "value":  "Svetlana"
+                                                                                   },
+                                                                                   {
+                                                                                       "name":  "modelId",
+                                                                                       "value":  "inworld-tts-1.5-max"
+                                                                                   },
+                                                                                   {
+                                                                                       "name":  "audioConfig",
+                                                                                       "value":  "={{ { temperature: 1.5, speakingRate: 0.85 } }}"
+                                                                                   }
+                                                                               ]
+                                                            },
+                                         "options":  {
+                                                         "response":  {
+                                                                          "response":  {
+                                                                                           "responseFormat":  "json"
+                                                                                       }
+                                                                      }
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.httpRequest",
+                      "typeVersion":  4.3,
+                      "position":  [
+                                       608,
+                                       0
+                                   ],
+                      "id":  "1955e2b1-6efd-4d85-b7e6-ef71f2356eaf",
+                      "name":  "inworld tts",
+                      "retryOnFail":  true,
+                      "credentials":  {
+                                          "httpHeaderAuth":  {
+                                                                 "id":  "",
+                                                                 "name":  "HTTP header auth account"
+                                                             }
+                                      }
+                  },
+                  {
+                      "parameters":  {
+                                         "operation":  "toBinary",
+                                         "sourceProperty":  "audioContent",
+                                         "options":  {
+                                                         "fileName":  "={{ $(\u0027CarReview_hotmod_generator\u0027).item.json.output.file_name }}"
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.convertToFile",
+                      "typeVersion":  1.1,
+                      "position":  [
+                                       944,
+                                       0
+                                   ],
+                      "id":  "4629c3ba-3560-4933-8505-2b9d54668a50",
+                      "name":  "Convert to File"
+                  },
+                  {
+                      "parameters":  {
+                                         "promptType":  "define",
+                                         "text":  "={{ $(\u0027When Executed by Another Workflow\u0027).item.json.result_cummary }}",
+                                         "hasOutputParser":  true,
+                                         "options":  {
+                                                         "systemMessage":  "={{ $json.prompt_text }}"
+                                                     }
+                                     },
+                      "type":  "@n8n/n8n-nodes-langchain.agent",
+                      "typeVersion":  3.1,
+                      "position":  [
+                                       160,
+                                       0
+                                   ],
+                      "id":  "60e53582-2d5e-4851-82bd-875bd40941be",
+                      "name":  "CarReview_hotmod_generator",
+                      "retryOnFail":  true
+                  },
+                  {
+                      "parameters":  {
+                                         "operation":  "select",
+                                         "schema":  {
+                                                        "__rl":  true,
+                                                        "mode":  "list",
+                                                        "value":  "public"
+                                                    },
+                                         "table":  {
+                                                       "__rl":  true,
+                                                       "value":  "prompt_library",
+                                                       "mode":  "list",
+                                                       "cachedResultName":  "prompt_library"
+                                                   },
+                                         "where":  {
+                                                       "values":  [
+                                                                      {
+                                                                          "column":  "bot_name",
+                                                                          "value":  "CarReview_hotmod_generator"
+                                                                      },
+                                                                      {
+                                                                          "column":  "status",
+                                                                          "value":  "active"
+                                                                      }
+                                                                  ]
+                                                   },
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.postgres",
+                      "typeVersion":  2.6,
+                      "position":  [
+                                       -80,
+                                       0
+                                   ],
+                      "id":  "7eee5490-2aeb-4fdc-8823-fe4d492572f0",
+                      "name":  "get_prompt",
+                      "credentials":  {
+                                          "postgres":  {
+                                                           "id":  "",
+                                                           "name":  "Postgres account"
+                                                       }
+                                      }
+                  },
+                  {
+                      "parameters":  {
+                                         "jsonSchemaExample":  "{\n  \"car_model\": \"string\",\n  \"file_name\": \"string\",\n  \"voiceover_text\": \"string\"\n}\n"
+                                     },
+                      "type":  "@n8n/n8n-nodes-langchain.outputParserStructured",
+                      "typeVersion":  1.3,
+                      "position":  [
+                                       336,
+                                       208
+                                   ],
+                      "id":  "fe61c1c7-c2da-4466-b6db-8d3154fabb58",
+                      "name":  "Structured Output Parser"
+                  },
+                  {
+                      "parameters":  {
+                                         "operation":  "sendAudio",
+                                         "chatId":  "={{ $env.OPERATOR_CHAT_ID }}",
+                                         "binaryData":  true,
+                                         "additionalFields":  {
+
+                                                              }
+                                     },
+                      "type":  "n8n-nodes-base.telegram",
+                      "typeVersion":  1.2,
+                      "position":  [
+                                       1296,
+                                       -16
+                                   ],
+                      "id":  "11fa9c51-818c-4655-bd68-faee92c95d9a",
+                      "name":  "Send an audio file",
+                      "credentials":  {
+                                          "telegramApi":  {
+                                                              "id":  "",
+                                                              "name":  "Telegram account"
+                                                          }
+                                      }
+                  }
+              ],
+    "connections":  {
+                        "When Executed by Another Workflow":  {
+                                                                  "main":  [
+                                                                               [
+                                                                                   {
+                                                                                       "node":  "get_prompt",
+                                                                                       "type":  "main",
+                                                                                       "index":  0
+                                                                                   }
+                                                                               ]
+                                                                           ]
+                                                              },
+                        "OpenRouter Chat Model":  {
+                                                      "ai_languageModel":  [
+                                                                               [
+                                                                                   {
+                                                                                       "node":  "CarReview_hotmod_generator",
+                                                                                       "type":  "ai_languageModel",
+                                                                                       "index":  0
+                                                                                   }
+                                                                               ]
+                                                                           ]
+                                                  },
+                        "inworld tts":  {
+                                            "main":  [
+                                                         [
+                                                             {
+                                                                 "node":  "Convert to File",
+                                                                 "type":  "main",
+                                                                 "index":  0
+                                                             }
+                                                         ]
+                                                     ]
+                                        },
+                        "CarReview_hotmod_generator":  {
+                                                           "main":  [
+                                                                        [
+                                                                            {
+                                                                                "node":  "inworld tts",
+                                                                                "type":  "main",
+                                                                                "index":  0
+                                                                            }
+                                                                        ]
+                                                                    ]
+                                                       },
+                        "get_prompt":  {
+                                           "main":  [
+                                                        [
+                                                            {
+                                                                "node":  "CarReview_hotmod_generator",
+                                                                "type":  "main",
+                                                                "index":  0
+                                                            }
+                                                        ]
+                                                    ]
+                                       },
+                        "Structured Output Parser":  {
+                                                         "ai_outputParser":  [
+                                                                                 [
+                                                                                     {
+                                                                                         "node":  "CarReview_hotmod_generator",
+                                                                                         "type":  "ai_outputParser",
+                                                                                         "index":  0
+                                                                                     }
+                                                                                 ]
+                                                                             ]
+                                                     },
+                        "Convert to File":  {
+                                                "main":  [
+                                                             [
+
+                                                             ]
+                                                         ]
+                                            }
+                    },
+    "settings":  {
+                     "executionOrder":  "v1",
+                     "availableInMCP":  false
+                 },
+    "meta":  {
+                 "templateCredsSetupCompleted":  true
+             }
+}

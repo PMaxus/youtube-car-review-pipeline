@@ -1,0 +1,184 @@
+{
+    "name":  "CarReview_get_main_summary",
+    "nodes":  [
+                  {
+                      "parameters":  {
+                                         "fieldsToAggregate":  {
+                                                                   "fieldToAggregate":  [
+                                                                                            {
+                                                                                                "fieldToAggregate":  "transcript_summary"
+                                                                                            }
+                                                                                        ]
+                                                               },
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.aggregate",
+                      "typeVersion":  1,
+                      "position":  [
+                                       -304,
+                                       -16
+                                   ],
+                      "id":  "b33fea5c-4e67-4de9-9011-18ace066aa05",
+                      "name":  "Aggregate"
+                  },
+                  {
+                      "parameters":  {
+                                         "model":  "openai/gpt-5-mini",
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+                      "typeVersion":  1,
+                      "position":  [
+                                       96,
+                                       176
+                                   ],
+                      "id":  "01bc5ce3-6446-4db9-8c43-cabbc2fc41fc",
+                      "name":  "OpenRouter Chat Model",
+                      "credentials":  {
+                                          "openRouterApi":  {
+                                                                "id":  "",
+                                                                "name":  "OpenRouter account"
+                                                            }
+                                      }
+                  },
+                  {
+                      "parameters":  {
+                                         "workflowInputs":  {
+                                                                "values":  [
+                                                                               {
+                                                                                   "name":  "transcript_summary"
+                                                                               }
+                                                                           ]
+                                                            }
+                                     },
+                      "type":  "n8n-nodes-base.executeWorkflowTrigger",
+                      "typeVersion":  1.1,
+                      "position":  [
+                                       -512,
+                                       -16
+                                   ],
+                      "id":  "e646c393-58f5-45b8-8374-e65e8bc42bb6",
+                      "name":  "When Executed by Another Workflow"
+                  },
+                  {
+                      "parameters":  {
+                                         "promptType":  "define",
+                                         "text":  "=SUMMARIES\n{{ JSON.stringify($(\u0027Aggregate\u0027).item.json.transcript_summary) }}",
+                                         "options":  {
+                                                         "systemMessage":  "={{ $(\u0027Get prompt\u0027).first().json.prompt_text }}"
+                                                     }
+                                     },
+                      "type":  "@n8n/n8n-nodes-langchain.agent",
+                      "typeVersion":  3.1,
+                      "position":  [
+                                       128,
+                                       -16
+                                   ],
+                      "id":  "42a10f87-0f01-4e3a-a3d6-0857324d14c9",
+                      "name":  "CarReview_main_summary",
+                      "retryOnFail":  true
+                  },
+                  {
+                      "parameters":  {
+                                         "operation":  "select",
+                                         "schema":  {
+                                                        "__rl":  true,
+                                                        "mode":  "list",
+                                                        "value":  "public"
+                                                    },
+                                         "table":  {
+                                                       "__rl":  true,
+                                                       "value":  "prompt_library",
+                                                       "mode":  "list",
+                                                       "cachedResultName":  "prompt_library"
+                                                   },
+                                         "where":  {
+                                                       "values":  [
+                                                                      {
+                                                                          "column":  "bot_name",
+                                                                          "value":  "CarReview_main_summary"
+                                                                      },
+                                                                      {
+                                                                          "column":  "status",
+                                                                          "value":  "active"
+                                                                      }
+                                                                  ]
+                                                   },
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.postgres",
+                      "typeVersion":  2.6,
+                      "position":  [
+                                       -112,
+                                       -16
+                                   ],
+                      "id":  "27d0e83f-3f00-4b81-b644-4db3819daf5b",
+                      "name":  "Get prompt",
+                      "credentials":  {
+                                          "postgres":  {
+                                                           "id":  "",
+                                                           "name":  "Postgres account"
+                                                       }
+                                      }
+                  }
+              ],
+    "connections":  {
+                        "Aggregate":  {
+                                          "main":  [
+                                                       [
+                                                           {
+                                                               "node":  "Get prompt",
+                                                               "type":  "main",
+                                                               "index":  0
+                                                           }
+                                                       ]
+                                                   ]
+                                      },
+                        "OpenRouter Chat Model":  {
+                                                      "ai_languageModel":  [
+                                                                               [
+                                                                                   {
+                                                                                       "node":  "CarReview_main_summary",
+                                                                                       "type":  "ai_languageModel",
+                                                                                       "index":  0
+                                                                                   }
+                                                                               ]
+                                                                           ]
+                                                  },
+                        "When Executed by Another Workflow":  {
+                                                                  "main":  [
+                                                                               [
+                                                                                   {
+                                                                                       "node":  "Aggregate",
+                                                                                       "type":  "main",
+                                                                                       "index":  0
+                                                                                   }
+                                                                               ]
+                                                                           ]
+                                                              },
+                        "Get prompt":  {
+                                           "main":  [
+                                                        [
+                                                            {
+                                                                "node":  "CarReview_main_summary",
+                                                                "type":  "main",
+                                                                "index":  0
+                                                            }
+                                                        ]
+                                                    ]
+                                       }
+                    },
+    "settings":  {
+                     "executionOrder":  "v1",
+                     "availableInMCP":  false
+                 },
+    "meta":  {
+                 "templateCredsSetupCompleted":  true
+             }
+}

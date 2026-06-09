@@ -1,0 +1,356 @@
+{
+    "name":  "CarReview_get_summaries_from_videos",
+    "nodes":  [
+                  {
+                      "parameters":  {
+                                         "workflowInputs":  {
+                                                                "values":  [
+                                                                               {
+                                                                                   "name":  "job_id_jobs"
+                                                                               },
+                                                                               {
+                                                                                   "name":  "video_url"
+                                                                               },
+                                                                               {
+                                                                                   "name":  "transcript"
+                                                                               },
+                                                                               {
+                                                                                   "name":  "car_mark"
+                                                                               }
+                                                                           ]
+                                                            }
+                                     },
+                      "type":  "n8n-nodes-base.executeWorkflowTrigger",
+                      "typeVersion":  1.1,
+                      "position":  [
+                                       -720,
+                                       272
+                                   ],
+                      "id":  "14d33a47-0a8e-4095-837a-e2286ce08b51",
+                      "name":  "When Executed by Another Workflow"
+                  },
+                  {
+                      "parameters":  {
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.splitInBatches",
+                      "typeVersion":  3,
+                      "position":  [
+                                       -384,
+                                       208
+                                   ],
+                      "id":  "f7a0886f-3784-4af1-98d2-517c5a3d3919",
+                      "name":  "Loop Over Items"
+                  },
+                  {
+                      "parameters":  {
+                                         "promptType":  "define",
+                                         "text":  "=TARGET_MODEL:  {{ $json.car_mark }}\nTRANSCRIPT:\n{{ $json.transcript }}",
+                                         "options":  {
+                                                         "systemMessage":  "[PROMPT REDACTED - see README]"
+                                                     }
+                                     },
+                      "type":  "@n8n/n8n-nodes-langchain.agent",
+                      "typeVersion":  3.1,
+                      "position":  [
+                                       224,
+                                       192
+                                   ],
+                      "id":  "a0fb2a9c-d3e1-4215-bd9d-f04479ae151d",
+                      "name":  "AI Agent",
+                      "retryOnFail":  true
+                  },
+                  {
+                      "parameters":  {
+                                         "model":  "openai/gpt-5-mini",
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+                      "typeVersion":  1,
+                      "position":  [
+                                       208,
+                                       352
+                                   ],
+                      "id":  "1045815f-08f9-460a-8be2-813ea9dd7421",
+                      "name":  "GPT5-mini",
+                      "credentials":  {
+                                          "openRouterApi":  {
+                                                                "id":  "",
+                                                                "name":  "OpenRouter account"
+                                                            }
+                                      }
+                  },
+                  {
+                      "parameters":  {
+                                         "operation":  "update",
+                                         "schema":  {
+                                                        "__rl":  true,
+                                                        "value":  "carreview",
+                                                        "mode":  "list",
+                                                        "cachedResultName":  "carreview"
+                                                    },
+                                         "table":  {
+                                                       "__rl":  true,
+                                                       "value":  "job_videos",
+                                                       "mode":  "list",
+                                                       "cachedResultName":  "job_videos"
+                                                   },
+                                         "columns":  {
+                                                         "mappingMode":  "defineBelow",
+                                                         "value":  {
+                                                                       "job_id_jobs":  "={{ $(\u0027Loop Over Items\u0027).item.json.job_id_jobs }}",
+                                                                       "transcript_summary":  "={{ $json.output }}",
+                                                                       "updated_at":  "={{ $now }}",
+                                                                       "youtube_video_url":  "={{ $(\u0027Loop Over Items\u0027).item.json.video_url }}"
+                                                                   },
+                                                         "matchingColumns":  [
+                                                                                 "job_id_jobs",
+                                                                                 "youtube_video_url"
+                                                                             ],
+                                                         "schema":  [
+                                                                        {
+                                                                            "id":  "job_id_jobs",
+                                                                            "displayName":  "job_id_jobs",
+                                                                            "required":  true,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true,
+                                                                            "removed":  false
+                                                                        },
+                                                                        {
+                                                                            "id":  "youtube_video_url",
+                                                                            "displayName":  "youtube_video_url",
+                                                                            "required":  true,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true,
+                                                                            "removed":  false
+                                                                        },
+                                                                        {
+                                                                            "id":  "youtube_channel_url",
+                                                                            "displayName":  "youtube_channel_url",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true,
+                                                                            "removed":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "youtube_channel_title",
+                                                                            "displayName":  "youtube_channel_title",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true,
+                                                                            "removed":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "youtube_video_title",
+                                                                            "displayName":  "youtube_video_title",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true,
+                                                                            "removed":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "transcript_text",
+                                                                            "displayName":  "transcript_text",
+                                                                            "required":  true,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true,
+                                                                            "removed":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "transcript_summary",
+                                                                            "displayName":  "transcript_summary",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "published_at",
+                                                                            "displayName":  "published_at",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "dateTime",
+                                                                            "canBeUsedToMatch":  true,
+                                                                            "removed":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "created_at",
+                                                                            "displayName":  "created_at",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "dateTime",
+                                                                            "canBeUsedToMatch":  true,
+                                                                            "removed":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "updated_at",
+                                                                            "displayName":  "updated_at",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "dateTime",
+                                                                            "canBeUsedToMatch":  true
+                                                                        }
+                                                                    ],
+                                                         "attemptToConvertTypes":  false,
+                                                         "convertFieldsToString":  false
+                                                     },
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.postgres",
+                      "typeVersion":  2.6,
+                      "position":  [
+                                       576,
+                                       304
+                                   ],
+                      "id":  "5ae10b4b-fd73-40d1-92fc-8430f61c299a",
+                      "name":  "Update rows in a table",
+                      "credentials":  {
+                                          "postgres":  {
+                                                           "id":  "",
+                                                           "name":  "Postgres account"
+                                                       }
+                                      }
+                  },
+                  {
+                      "parameters":  {
+                                         "assignments":  {
+                                                             "assignments":  [
+                                                                                 {
+                                                                                     "id":  "8085387a-d0e9-422b-9ca3-68fb15a25c52",
+                                                                                     "name":  "success",
+                                                                                     "value":  true,
+                                                                                     "type":  "boolean"
+                                                                                 }
+                                                                             ]
+                                                         },
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.set",
+                      "typeVersion":  3.4,
+                      "position":  [
+                                       -112,
+                                       96
+                                   ],
+                      "id":  "b4f7063f-8f28-423f-883b-34cea1b006a0",
+                      "name":  "success",
+                      "executeOnce":  true
+                  },
+                  {
+                      "parameters":  {
+
+                                     },
+                      "type":  "n8n-nodes-base.wait",
+                      "typeVersion":  1.1,
+                      "position":  [
+                                       784,
+                                       400
+                                   ],
+                      "id":  "0532e540-5963-42a4-b80f-8edcbb58a6ae",
+                      "name":  "Wait"
+                  }
+              ],
+    "connections":  {
+                        "When Executed by Another Workflow":  {
+                                                                  "main":  [
+                                                                               [
+                                                                                   {
+                                                                                       "node":  "Loop Over Items",
+                                                                                       "type":  "main",
+                                                                                       "index":  0
+                                                                                   }
+                                                                               ]
+                                                                           ]
+                                                              },
+                        "Loop Over Items":  {
+                                                "main":  [
+                                                             [
+                                                                 {
+                                                                     "node":  "success",
+                                                                     "type":  "main",
+                                                                     "index":  0
+                                                                 }
+                                                             ],
+                                                             [
+                                                                 {
+                                                                     "node":  "AI Agent",
+                                                                     "type":  "main",
+                                                                     "index":  0
+                                                                 }
+                                                             ]
+                                                         ]
+                                            },
+                        "AI Agent":  {
+                                         "main":  [
+                                                      [
+                                                          {
+                                                              "node":  "Update rows in a table",
+                                                              "type":  "main",
+                                                              "index":  0
+                                                          }
+                                                      ]
+                                                  ]
+                                     },
+                        "GPT5-mini":  {
+                                          "ai_languageModel":  [
+                                                                   [
+                                                                       {
+                                                                           "node":  "AI Agent",
+                                                                           "type":  "ai_languageModel",
+                                                                           "index":  0
+                                                                       }
+                                                                   ]
+                                                               ]
+                                      },
+                        "Update rows in a table":  {
+                                                       "main":  [
+                                                                    [
+                                                                        {
+                                                                            "node":  "Wait",
+                                                                            "type":  "main",
+                                                                            "index":  0
+                                                                        }
+                                                                    ]
+                                                                ]
+                                                   },
+                        "Wait":  {
+                                     "main":  [
+                                                  [
+                                                      {
+                                                          "node":  "Loop Over Items",
+                                                          "type":  "main",
+                                                          "index":  0
+                                                      }
+                                                  ]
+                                              ]
+                                 }
+                    },
+    "settings":  {
+                     "executionOrder":  "v1",
+                     "availableInMCP":  false
+                 },
+    "meta":  null
+}
