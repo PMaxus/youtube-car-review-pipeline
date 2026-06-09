@@ -877,7 +877,7 @@
                   {
                       "parameters":  {
                                          "chatId":  "={{ $(\u0027Set content\u0027).item.json.Telegramm_id }}",
-                                         "text":  "=Р РµР¶РёРј СЂР°Р±РѕС‚С‹ РёР·РјРµРЅРµРЅ!",
+                                         "text":  "=Режим работы изменен!",
                                          "additionalFields":  {
                                                                   "appendAttribution":  false
                                                               }
@@ -1487,7 +1487,7 @@
                   {
                       "parameters":  {
                                          "chatId":  "={{ $(\u0027Set content\u0027).item.json.Telegramm_id }}",
-                                         "text":  "=вњ…рџ”Ћ РџРѕРёСЃРє РїРѕ YouTube Рё РѕС‚Р±РѕСЂ 5 СЃР°РјС‹С… РїРѕРґС…РѕРґСЏС‰РёС… РєР°РЅРґРёРґР°С‚РѕРІ Р·Р°РІРµСЂС€С‘РЅ.\nрџ“Њ РћС‚РѕР±СЂР°РЅС‹ СЃР»РµРґСѓСЋС‰РёРµ РєР°РЅРґРёРґР°С‚С‹ РґР»СЏ РїРѕСЃР»РµРґСѓСЋС‰РµР№ РѕР±СЂР°Р±РѕС‚РєРё:\n\nрџҐ‡ РљР°РЅРґРёРґР°С‚ 1\nрџЋ¬ Р’РёРґРµРѕ: \u003ca href=\"{{ $json.video_url[0] }}\"\u003e{{ $json.video_title[0] }}\u003c/a\u003e\nрџ“… Р”Р°С‚Р° РїСѓР±Р»РёРєР°С†РёРё: {{ new Date($json.published_at[0]).toLocaleString(\u0027ru-RU\u0027) }}\nрџ‘¤ РљР°РЅР°Р»: \u003ca href=\"{{ $json.channel_url[0] }}\"\u003e{{ $json.channel_title[0] }}\u003c/a\u003e\n\nрџҐ€ РљР°РЅРґРёРґР°С‚ 2\nрџЋ¬ Р’РёРґРµРѕ: \u003ca href=\"{{ $json.video_url[1] }}\"\u003e{{ $json.video_title[1] }}\u003c/a\u003e\nрџ“… Р”Р°С‚Р° РїСѓР±Р»РёРєР°С†РёРё: {{ new Date($json.published_at[1]).toLocaleString(\u0027ru-RU\u0027) }}\nрџ‘¤ РљР°РЅР°Р»: \u003ca href=\"{{ $json.channel_url[1] }}\"\u003e{{ $json.channel_title[1] }}\u003c/a\u003e\n\nрџҐ‰ РљР°РЅРґРёРґР°С‚ 3\nрџЋ¬ Р’РёРґРµРѕ: \u003ca href=\"{{ $json.video_url[2] }}\"\u003e{{ $json.video_title[2] }}\u003c/a\u003e\nрџ“… Р”Р°С‚Р° РїСѓР±Р»РёРєР°С†РёРё: {{ new Date($json.published_at[2]).toLocaleString(\u0027ru-RU\u0027) }}\nрџ‘¤ РљР°РЅР°Р»: \u003ca href=\"{{ $json.channel_url[2] }}\"\u003e{{ $json.channel_title[2] }}\u003c/a\u003e\n\nрџЏ… РљР°РЅРґРёРґР°С‚ 4\nрџЋ¬ Р’РёРґРµРѕ: \u003ca href=\"{{ $json.video_url[3] }}\"\u003e{{ $json.video_title[3] }}\u003c/a\u003e\nрџ“… Р”Р°С‚Р° РїСѓР±Р»РёРєР°С†РёРё: {{ new Date($json.published_at[3]).toLocaleString(\u0027ru-RU\u0027) }}\nрџ‘¤ РљР°РЅР°Р»: \u003ca href=\"{{ $json.channel_url[3] }}\"\u003e{{ $json.channel_title[3] }}\u003c/a\u003e\n\nрџЏ… РљР°РЅРґРёРґР°С‚ 5\nрџЋ¬ Р’РёРґРµРѕ: \u003ca href=\"{{ $json.video_url[4] }}\"\u003e{{ $json.video_title[4] }}\u003c/a\u003e\nрџ“… Р”Р°С‚Р° РїСѓР±Р»РёРєР°С†РёРё: {{ new Date($json.published_at[4]).toLocaleString(\u0027ru-RU\u0027) }}\nрџ‘¤ РљР°РЅР°Р»: \u003ca href=\"{{ $json.channel_url[4] }}\"\u003e{{ $json.channel_title[4] }}\u003c/a\u003e\n",
+                                         "text":  "=✅🔎 Поиск по YouTube и отбор 5 самых подходящих кандидатов завершён.\n📌 Отобраны следующие кандидаты для последующей обработки:\n\n🥇 Кандидат 1\n🎬 Видео: \u003ca href=\"{{ $json.video_url[0] }}\"\u003e{{ $json.video_title[0] }}\u003c/a\u003e\n📅 Дата публикации: {{ new Date($json.published_at[0]).toLocaleString(\u0027ru-RU\u0027) }}\n👤 Канал: \u003ca href=\"{{ $json.channel_url[0] }}\"\u003e{{ $json.channel_title[0] }}\u003c/a\u003e\n\n🥈 Кандидат 2\n🎬 Видео: \u003ca href=\"{{ $json.video_url[1] }}\"\u003e{{ $json.video_title[1] }}\u003c/a\u003e\n📅 Дата публикации: {{ new Date($json.published_at[1]).toLocaleString(\u0027ru-RU\u0027) }}\n👤 Канал: \u003ca href=\"{{ $json.channel_url[1] }}\"\u003e{{ $json.channel_title[1] }}\u003c/a\u003e\n\n🥉 Кандидат 3\n🎬 Видео: \u003ca href=\"{{ $json.video_url[2] }}\"\u003e{{ $json.video_title[2] }}\u003c/a\u003e\n📅 Дата публикации: {{ new Date($json.published_at[2]).toLocaleString(\u0027ru-RU\u0027) }}\n👤 Канал: \u003ca href=\"{{ $json.channel_url[2] }}\"\u003e{{ $json.channel_title[2] }}\u003c/a\u003e\n\n🏅 Кандидат 4\n🎬 Видео: \u003ca href=\"{{ $json.video_url[3] }}\"\u003e{{ $json.video_title[3] }}\u003c/a\u003e\n📅 Дата публикации: {{ new Date($json.published_at[3]).toLocaleString(\u0027ru-RU\u0027) }}\n👤 Канал: \u003ca href=\"{{ $json.channel_url[3] }}\"\u003e{{ $json.channel_title[3] }}\u003c/a\u003e\n\n🏅 Кандидат 5\n🎬 Видео: \u003ca href=\"{{ $json.video_url[4] }}\"\u003e{{ $json.video_title[4] }}\u003c/a\u003e\n📅 Дата публикации: {{ new Date($json.published_at[4]).toLocaleString(\u0027ru-RU\u0027) }}\n👤 Канал: \u003ca href=\"{{ $json.channel_url[4] }}\"\u003e{{ $json.channel_title[4] }}\u003c/a\u003e\n",
                                          "replyMarkup":  "inlineKeyboard",
                                          "inlineKeyboard":  {
                                                                 "rows":  [
@@ -1495,13 +1495,13 @@
                                                                                  "row":  {
                                                                                              "buttons":  [
                                                                                                              {
-                                                                                                                 "text":  "РџСЂРёРЅРёРјР°СЋ СЂРµР·СѓР»СЊС‚Р°С‚, РјРѕР¶РЅРѕ РїСЂРёСЃС‚СѓРїР°С‚СЊ Рє С‚СЂР°РЅСЃРєСЂРёРїС†РёРё Рё СЃСѓРјРјР°СЂРёР·Р°С†РёРё.",
+                                                                                                                 "text":  "Принимаю результат, можно приступать к транскрипции и суммаризации.",
                                                                                                                  "additionalFields":  {
                                                                                                                                           "callback_data":  "menu/summary/start_work/transcription"
                                                                                                                                       }
                                                                                                              },
                                                                                                              {
-                                                                                                                 "text":  "РЎР±СЂРѕСЃРёС‚СЊ С‚РµРєСѓС‰РёР№ Р·Р°РїСЂРѕСЃ Рё РЅР°С‡Р°С‚СЊ Р·Р°РЅРѕРІРѕ.",
+                                                                                                                 "text":  "Сбросить текущий запрос и начать заново.",
                                                                                                                  "additionalFields":  {
                                                                                                                                           "callback_data":  "menu/summary/drop_request"
                                                                                                                                       }
@@ -1534,7 +1534,7 @@
                   {
                       "parameters":  {
                                          "chatId":  "={{ $(\u0027Set content\u0027).item.json.Telegramm_id }}",
-                                         "text":  "Р—Р°РїСЂРѕСЃ РїСЂРёРЅСЏС‚, РѕР¶РёРґР°Р№С‚Рµ РІС‹РїРѕР»РЅРµРЅРёСЏ РїРѕРёСЃРєР° Рё РѕС‚Р±РѕСЂР° РєР°РЅРґРёРґР°С‚РѕРІ.",
+                                         "text":  "Запрос принят, ожидайте выполнения поиска и отбора кандидатов.",
                                          "additionalFields":  {
                                                                   "appendAttribution":  false
                                                               }
@@ -1557,7 +1557,7 @@
                   {
                       "parameters":  {
                                          "chatId":  "={{ $(\u0027Set content\u0027).item.json.Telegramm_id }}",
-                                         "text":  "Р—Р°РїСЂРѕСЃ РїСЂРёРЅСЏС‚, РѕР¶РёРґР°Р№С‚Рµ РІС‹РїРѕР»РЅРµРЅРёСЏ С‚СЂР°РЅСЃРєСЂРёРїС†РёРё.",
+                                         "text":  "Запрос принят, ожидайте выполнения транскрипции.",
                                          "additionalFields":  {
                                                                   "appendAttribution":  false
                                                               }
@@ -1762,7 +1762,7 @@
                   {
                       "parameters":  {
                                          "chatId":  "={{ $(\u0027Set content\u0027).item.json.Telegramm_id }}",
-                                         "text":  "=РЎРµСЂРІРёСЃ РїСЂРµРґРѕСЃС‚Р°РІР»РµРЅРёСЏ С‚СЂР°РЅСЃРєСЂРёРїС‚РѕРІ РІС‹РґР°Р» РѕС€РёР±РєСѓ. Р’С‹ РјРѕР¶РµС‚Рµ РїРѕРїСЂРѕР±РѕРІР°С‚СЊ РµС‰Рµ СЂР°Р· РїРѕР·Р¶Рµ РёР»Рё СЃР±СЂРѕСЃРёС‚СЊ С‚РµРєСѓС‰СѓСЋ Р·Р°СЏРІРєСѓ Рё РЅР°С‡Р°С‚СЊ СЃРЅР°С‡Р°Р»Р°.\n",
+                                         "text":  "=Сервис предоставления транскриптов выдал ошибку. Вы можете попробовать еще раз позже или сбросить текущую заявку и начать сначала.\n",
                                          "replyMarkup":  "inlineKeyboard",
                                          "inlineKeyboard":  {
                                                                 "rows":  [
@@ -1770,13 +1770,13 @@
                                                                                  "row":  {
                                                                                              "buttons":  [
                                                                                                              {
-                                                                                                                 "text":  "РџРѕРїСЂРѕР±РѕРІР°С‚СЊ РµС‰Рµ СЂР°Р·.",
+                                                                                                                 "text":  "Попробовать еще раз.",
                                                                                                                  "additionalFields":  {
                                                                                                                                           "callback_data":  "menu/summary/start_work/transcription"
                                                                                                                                       }
                                                                                                              },
                                                                                                              {
-                                                                                                                 "text":  "РЎР±СЂРѕСЃРёС‚СЊ С‚РµРєСѓС‰СѓСЋ Р·Р°СЏРІРєСѓ.",
+                                                                                                                 "text":  "Сбросить текущую заявку.",
                                                                                                                  "additionalFields":  {
                                                                                                                                           "callback_data":  "menu/summary/drop_request"
                                                                                                                                       }
@@ -1809,7 +1809,7 @@
                   {
                       "parameters":  {
                                          "chatId":  "={{ $(\u0027Set content\u0027).item.json.Telegramm_id }}",
-                                         "text":  "=РўСЂР°РЅСЃРєСЂРёРїС†РёСЏ СѓСЃРїРµС€РЅРѕ РїСЂРѕРІРµРґРµРЅР°, РїРµСЂРµС…РѕР¶Сѓ Рє СЌС‚Р°РїСѓ РїРѕР»СѓС‡РµРЅРёСЏ СЃР°РјРјР°СЂРё РїРѕ РєР°РЅРґРёРґР°С‚Р°Рј.\n",
+                                         "text":  "=Транскрипция успешно проведена, перехожу к этапу получения саммари по кандидатам.\n",
                                          "additionalFields":  {
                                                                   "appendAttribution":  false
                                                               }
@@ -1832,7 +1832,7 @@
                   {
                       "parameters":  {
                                          "chatId":  "={{ $(\u0027Set content\u0027).item.json.Telegramm_id }}",
-                                         "text":  "=РЎРµСЂРІРёСЃ РїСЂРµРґРѕСЃС‚Р°РІР»РµРЅРёСЏ С‚СЂР°РЅСЃРєСЂРёРїС‚РѕРІ РІС‹РґР°Р» РѕС€РёР±РєСѓ. Р’С‹ РјРѕР¶РµС‚Рµ РїРѕРїСЂРѕР±РѕРІР°С‚СЊ РµС‰Рµ СЂР°Р· РїРѕР·Р¶Рµ, СЃР±СЂРѕСЃРёС‚СЊ С‚РµРєСѓС‰СѓСЋ Р·Р°СЏРІРєСѓ РёР»Рё РїРµСЂРµР№С‚Рё РґР°Р»СЊС€Рµ, Р±РµР· РЅРµРєРѕС‚РѕСЂС‹С… РєР°РЅРґРёРґР°С‚РѕРІ.\nРџРµСЂРµС‡РµРЅСЊ РєР°РЅРґРёРґР°С‚РѕРІ, РїРѕ РєРѕС‚РѕСЂС‹Рј РЅРµ РїРѕР»СѓС‡РёР»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ С‚СЂР°РЅСЃРєСЂРёРїС‚:\n{{ $json.message }}\n",
+                                         "text":  "=Сервис предоставления транскриптов выдал ошибку. Вы можете попробовать еще раз позже, сбросить текущую заявку или перейти дальше, без некоторых кандидатов.\nПеречень кандидатов, по которым не получилось получить транскрипт:\n{{ $json.message }}\n",
                                          "replyMarkup":  "inlineKeyboard",
                                          "inlineKeyboard":  {
                                                                 "rows":  [
@@ -1840,13 +1840,13 @@
                                                                                  "row":  {
                                                                                              "buttons":  [
                                                                                                              {
-                                                                                                                 "text":  "РџРѕРїСЂРѕР±РѕРІР°С‚СЊ РµС‰Рµ СЂР°Р·.",
+                                                                                                                 "text":  "Попробовать еще раз.",
                                                                                                                  "additionalFields":  {
                                                                                                                                           "callback_data":  "menu/summary/start_work/transcription"
                                                                                                                                       }
                                                                                                              },
                                                                                                              {
-                                                                                                                 "text":  "РЎР±СЂРѕСЃРёС‚СЊ С‚РµРєСѓС‰СѓСЋ Р·Р°СЏРІРєСѓ.",
+                                                                                                                 "text":  "Сбросить текущую заявку.",
                                                                                                                  "additionalFields":  {
                                                                                                                                           "callback_data":  "menu/summary/drop_request"
                                                                                                                                       }
@@ -1858,7 +1858,7 @@
                                                                                  "row":  {
                                                                                              "buttons":  [
                                                                                                              {
-                                                                                                                 "text":  "РџРµСЂРµР№С‚Рё РґР°Р»СЊС€Рµ, СЃ С‚РµРј С‡С‚Рѕ РµСЃС‚СЊ.",
+                                                                                                                 "text":  "Перейти дальше, с тем что есть.",
                                                                                                                  "additionalFields":  {
                                                                                                                                           "callback_data":  "menu/summary/start_work/five_summaries"
                                                                                                                                       }
@@ -2142,7 +2142,7 @@
                   {
                       "parameters":  {
                                          "chatId":  "={{ $(\u0027Set content\u0027).item.json.Telegramm_id }}",
-                                         "text":  "=РћС€РёР±РєР° СЃРѕСЃС‚Р°РІР»РµРЅРёСЏ СЃР°РјРјР°СЂРё, РїРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р· РїРѕР·Р¶Рµ.",
+                                         "text":  "=Ошибка составления саммари, попробуйте еще раз позже.",
                                          "replyMarkup":  "inlineKeyboard",
                                          "inlineKeyboard":  {
                                                                 "rows":  [
@@ -2150,7 +2150,7 @@
                                                                                  "row":  {
                                                                                              "buttons":  [
                                                                                                              {
-                                                                                                                 "text":  "РџРѕРїСЂРѕР±РѕРІР°С‚СЊ РµС‰Рµ СЂР°Р·.",
+                                                                                                                 "text":  "Попробовать еще раз.",
                                                                                                                  "additionalFields":  {
                                                                                                                                           "callback_data":  "menu/summary/start_work/five_summaries"
                                                                                                                                       }
@@ -2220,7 +2220,7 @@
                   {
                       "parameters":  {
                                          "chatId":  "={{ $(\u0027Set content\u0027).item.json.Telegramm_id }}",
-                                         "text":  "=РЎРѕСЃС‚Р°РІР»РµРЅРёРµ СЃР°РјРјР°СЂРё СѓСЃРїРµС€РЅРѕ Р·Р°РІРµСЂС€РµРЅРѕ, РїРµСЂРµС…РѕР¶Сѓ РІ Р·Р°РєР»СЋС‡РёС‚РµР»СЊРЅРѕРјСѓ СЌС‚Р°РїСѓ СЃРѕСЃС‚Р°РІР»РµРЅРёСЏ РѕР±С‰РµРіРѕ СЃР°РјРјР°СЂРё.",
+                                         "text":  "=Составление саммари успешно завершено, перехожу в заключительному этапу составления общего саммари.",
                                          "additionalFields":  {
                                                                   "appendAttribution":  false
                                                               }
@@ -2335,7 +2335,7 @@
                   {
                       "parameters":  {
                                          "chatId":  "={{ $(\u0027Set content\u0027).item.json.Telegramm_id }}",
-                                         "text":  "=РћС€РёР±РєР° СЃРѕСЃС‚Р°РІР»РµРЅРёСЏ С„РёРЅР°Р»СЊРЅРѕРіРѕ СЃР°РјРјР°СЂРё, РїРѕР¶Р°Р»СѓР№СЃС‚Р°, РїРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р· РїРѕР·Р¶Рµ.",
+                                         "text":  "=Ошибка составления финального саммари, пожалуйста, попробуйте еще раз позже.",
                                          "replyMarkup":  "inlineKeyboard",
                                          "inlineKeyboard":  {
                                                                 "rows":  [
@@ -2343,7 +2343,7 @@
                                                                                  "row":  {
                                                                                              "buttons":  [
                                                                                                              {
-                                                                                                                 "text":  "РџРѕРїСЂРѕР±РѕРІР°С‚СЊ РµС‰Рµ СЂР°Р·.",
+                                                                                                                 "text":  "Попробовать еще раз.",
                                                                                                                  "additionalFields":  {
                                                                                                                                           "callback_data":  "menu/summary/start_work/main_summary"
                                                                                                                                       }
@@ -2376,7 +2376,7 @@
                   {
                       "parameters":  {
                                          "chatId":  "={{ $(\u0027Set content\u0027).item.json.Telegramm_id }}",
-                                         "text":  "=РџРѕР»СѓС‡РµРЅРёРµ РёС‚РѕРіРѕРІРѕРіРѕ СЃР°РјРјР°СЂРё Р·Р°РІРµСЂС€РµРЅР°, РїСЂРёСЃС‚СѓРїР°СЋ Рє РІС‹РІРѕРґСѓ СЂРµР·СѓР»СЊС‚Р°С‚Р°, РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РІС‹Р±СЂР°РЅРЅРѕРіРѕ СЂРµР¶РёРјР° СЂР°Р±РѕС‚С‹.\n",
+                                         "text":  "=Получение итогового саммари завершена, приступаю к выводу результата, в зависимости от выбранного режима работы.\n",
                                          "additionalFields":  {
                                                                   "appendAttribution":  false
                                                               }
@@ -3313,7 +3313,7 @@
                   {
                       "parameters":  {
                                          "chatId":  "={{ $(\u0027Set content\u0027).item.json.Telegramm_id }}",
-                                         "text":  "=Р’Р°С€ Р·Р°РїСЂРѕСЃ РІС‹РїРѕР»РЅРµРЅ! РќРёР¶Рµ РїСЂРµРґСЃС‚Р°РІР»РµРЅ СЂРµР·СѓР»СЊС‚Р°С‚ СЂС‹Р±РѕС‚С‹.",
+                                         "text":  "=Ваш запрос выполнен! Ниже представлен результат рыботы.",
                                          "additionalFields":  {
                                                                   "appendAttribution":  false,
                                                                   "parse_mode":  "HTML"
@@ -3345,7 +3345,7 @@
                                                                                  "row":  {
                                                                                              "buttons":  [
                                                                                                              {
-                                                                                                                 "text":  "Р’РµСЂРЅСѓС‚СЊСЃСЏ РІ РіР»Р°РІРЅРѕРµ РјРµРЅСЋ",
+                                                                                                                 "text":  "Вернуться в главное меню",
                                                                                                                  "additionalFields":  {
                                                                                                                                           "callback_data":  "menu/main"
                                                                                                                                       }
@@ -3713,7 +3713,7 @@
                   {
                       "parameters":  {
                                          "chatId":  "={{ $(\u0027Set content\u0027).item.json.Telegramm_id }}",
-                                         "text":  "=РќРµ СѓРґР°Р»РѕСЃСЊ СЃРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ СЂРµР·СѓР»СЊС‚Р°С‚, РѕР±СЂР°Р±РѕС‚С‡РёРє СЂРµР¶РёРјР° РІРµСЂРЅСѓР» РѕС€РёР±РєСѓ.",
+                                         "text":  "=Не удалось сгенерировать результат, обработчик режима вернул ошибку.",
                                          "replyMarkup":  "inlineKeyboard",
                                          "inlineKeyboard":  {
                                                                 "rows":  [
@@ -3721,7 +3721,7 @@
                                                                                  "row":  {
                                                                                              "buttons":  [
                                                                                                              {
-                                                                                                                 "text":  "РџРѕРїСЂРѕР±РѕРІР°С‚СЊ РµС‰Рµ СЂР°Р·.",
+                                                                                                                 "text":  "Попробовать еще раз.",
                                                                                                                  "additionalFields":  {
                                                                                                                                           "callback_data":  "menu/summary/start_work/send_result"
                                                                                                                                       }
@@ -3754,7 +3754,7 @@
                   {
                       "parameters":  {
                                          "chatId":  "={{ $(\u0027Set content\u0027).item.json.Telegramm_id }}",
-                                         "text":  "=Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РІ РіР»Р°РІРЅРѕРµ РјРµРЅСЋ Р±РѕС‚Р°! РњРµРЅСЏ Р·РѕРІСѓС‚ CarReviewBot v0.2, РЅР° СЃРµРіРѕРґРЅСЏС€РЅРёР№ РґРµРЅСЊ, СЏ РјРѕРіСѓ:\n1. РџРѕР»СѓС‡РёС‚СЊ РѕС‚ Р’Р°СЃ РЅР°Р·РІР°РЅРёРµ Р°РІС‚РѕРјРѕР±РёР»СЏ, РїРѕСЃР»Рµ С‡РµРіРѕ РїСЂРѕР№С‚РёСЃСЊ РїРѕРёСЃРєРѕРј РїРѕ СЋСѓС‚СѓР±Сѓ, С‡С‚РѕР±С‹ РЅР°Р№С‚Рё РЅР° РЅРµРіРѕ РѕР±Р·РѕСЂС‹, СЃРѕР±СЂР°С‚СЊ РІС‹Р¶РёРјРєРё РїР»СЋСЃРѕРІ Рё РјРёРЅСѓСЃРѕРІ РёР· 5 СЃР°РјС‹С… РїРѕРґС…РѕРґСЏС‰РёС… СЂРѕР»РёРєРѕРІ, Р·Р°С‚РµРј СЃРґРµР»Р°С‚СЊ РѕР±С‰СѓСЋ РІС‹Р¶РёРјРєСѓ РёР· СЌС‚РёС… 5 СЂРѕР»РёРєРѕРІ.\n2. РЈ РјРµРЅСЏ РµСЃС‚СЊ РѕРїС†РёСЏ \"Р“РѕСЂСЏС‡РµРіРѕ СЂРµР¶РёРјР°\", РІ СЌС‚РѕРј СЂРµР¶РёРјРµ, РІРјРµСЃС‚Рµ СЃ СЂРµР·СѓР»СЊС‚Р°С‚РѕРј, Р±СѓРґРµС‚ РІС‹СЃР»Р°РЅР° РР-РѕР·РІСѓС‡РєР° СЌС‚РёС… РїР»СЋСЃРѕРІ Рё РјРёРЅСѓСЃРѕРІ РІ \"РіРѕСЂСЏС‡РµРј\" РёСЃРїРѕР»РЅРµРЅРёРё.",
+                                         "text":  "=Добро пожаловать в главное меню бота! Меня зовут CarReviewBot v0.2, на сегодняшний день, я могу:\n1. Получить от Вас название автомобиля, после чего пройтись поиском по юутубу, чтобы найти на него обзоры, собрать выжимки плюсов и минусов из 5 самых подходящих роликов, затем сделать общую выжимку из этих 5 роликов.\n2. У меня есть опция \"Горячего режима\", в этом режиме, вместе с результатом, будет выслана ИИ-озвучка этих плюсов и минусов в \"горячем\" исполнении.",
                                          "replyMarkup":  "inlineKeyboard",
                                          "inlineKeyboard":  {
                                                                 "rows":  [
@@ -3762,7 +3762,7 @@
                                                                                  "row":  {
                                                                                              "buttons":  [
                                                                                                              {
-                                                                                                                 "text":  "Р’РєР»СЋС‡РёС‚СЊ HOT MOD рџҐµ",
+                                                                                                                 "text":  "Включить HOT MOD 🥵",
                                                                                                                  "additionalFields":  {
                                                                                                                                           "callback_data":  "mode/hotmode"
                                                                                                                                       }
@@ -3774,7 +3774,7 @@
                                                                                  "row":  {
                                                                                              "buttons":  [
                                                                                                              {
-                                                                                                                 "text":  "Р’С‹РєР»СЋС‡РёС‚СЊ HOT MOD рџҐ¶",
+                                                                                                                 "text":  "Выключить HOT MOD 🥶",
                                                                                                                  "additionalFields":  {
                                                                                                                                           "callback_data":  "mode/basic"
                                                                                                                                       }
@@ -3786,7 +3786,7 @@
                                                                                  "row":  {
                                                                                              "buttons":  [
                                                                                                              {
-                                                                                                                 "text":  "РџСЂРёСЃС‚СѓРїРёС‚СЊ РІ РІРІРѕРґСѓ РЅР°Р·РІР°РЅРёСЏ Р°РІС‚Рѕ рџљ™",
+                                                                                                                 "text":  "Приступить в вводу названия авто 🚙",
                                                                                                                  "additionalFields":  {
                                                                                                                                           "callback_data":  "menu/summary/auto_input"
                                                                                                                                       }
@@ -3798,7 +3798,7 @@
                                                                                  "row":  {
                                                                                              "buttons":  [
                                                                                                              {
-                                                                                                                 "text":  "РњРµРЅСЋ РІС‹Р±РѕСЂР° РЅРµР·Р°РІРµСЂС€РµРЅРЅС‹С… Р·Р°РїСЂРѕСЃРѕРІ рџ¤•",
+                                                                                                                 "text":  "Меню выбора незавершенных запросов 🤕",
                                                                                                                  "additionalFields":  {
                                                                                                                                           "callback_data":  "menu/summary/not_finished_requests"
                                                                                                                                       }
